@@ -29,6 +29,11 @@ class SimplePid
       return true
     end
   end
+  
+  def self.cleanup!(path)
+    p = self.new(path)
+    p.cleanup if p.exists?
+  end
 
   def exists?
     File.exists?(@path)

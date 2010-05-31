@@ -22,10 +22,13 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.rdoc",
      "Rakefile",
+     "VERSION",
      "lib/core_ext.rb",
      "lib/core_ext/string.rb",
      "lib/simple_pid.rb",
-     "test/helper.rb"
+     "simple_pid.gemspec",
+     "test/helper.rb",
+     "test/test_simple_pid.rb"
   ]
   s.homepage = %q{http://github.com/watsonian/simple_pid}
   s.rdoc_options = ["--charset=UTF-8"]

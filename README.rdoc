@@ -38,7 +38,10 @@ And you can cleanup quickly with:
 
 The above cleanup class method returns true if the process wasn't running
 and the cleanup was actually run. It returns false if the process was still
-running and no cleanup occurred.
+running and no cleanup occurred. If you need to force cleanup regardless of
+whether the process is running or not, you can do so with:
+
+ SimplePid.cleanup!("/path/to/your.pid")
 
 You can check to see if the process is running and exit with an error message
 if it is like this:
