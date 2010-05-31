@@ -1,12 +1,37 @@
+# Much of this was extracted from Kenneth Kalmer's excellent
+# daemon-kit project on GitHub: http://github.com/kennethkalmer/daemon-kit
+
 require File.dirname(__FILE__) + '/core_ext'
 
 class SimplePid
-  def initialize( path )
+  def initialize(path)
     @path = path.to_absolute_path
+  end
+  
+  def self.drop(path)
+    p = self.new(path)
+    if p.exists?
+      unless p.running?
+        p.cleanup
+        p.write!
+      end
+    else
+      p.write!
+    end
+  end
+  
+  def self.cleanup(path)
+    p = self.new(path)
+    if p.running?
+      return false
+    else
+      p.cleanup
+      return true
+    end
   end
 
   def exists?
-    File.exists?( @path )
+    File.exists?(@path)
   end
 
   # Returns true if the process is running
@@ -33,9 +58,7 @@ class SimplePid
   def pid
     return nil unless self.exists?
 
-    File.open( @path ) { |f|
-      return f.gets.to_i
-    }
+    File.open( @path ) { |f| return f.gets.to_i }
   end
 
   def ensure_stopped!
@@ -46,14 +69,11 @@ class SimplePid
   end
 
   def cleanup
-    File.delete( @path ) rescue Errno::ENOENT
+    File.delete(@path) rescue Errno::ENOENT
   end
   alias zap cleanup
 
   def write!
-    File.open( @path, 'w' ) { |f|
-      f.puts Process.pid
-    }
+    File.open(@path, 'w') { |f| f.puts Process.pid }
   end
-end
 end

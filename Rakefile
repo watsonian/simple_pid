@@ -4,13 +4,13 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "simple_pids"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.name = "simple_pid"
+    gem.summary = %Q{A simple, but complete library for managing pidfiles.}
+    gem.description = %Q{A simple, but complete library for managing pidfiles.}
     gem.email = "watsonian@gmail.com"
-    gem.homepage = "http://github.com/watsonian/simple_pids"
+    gem.homepage = "http://github.com/watsonian/simple_pid"
     gem.authors = ["watsonian"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    # gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
