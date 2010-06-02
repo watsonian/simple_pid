@@ -74,7 +74,11 @@ class SimplePid
   end
 
   def cleanup
-    File.delete(@path) rescue Errno::ENOENT
+    begin
+      File.delete(@path)
+    rescue Errno::ENOENT
+      File.delete("/tmp/#{Pathname.new(@path).basename}")
+    end
   end
   alias zap cleanup
 
