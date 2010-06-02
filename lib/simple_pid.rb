@@ -79,6 +79,10 @@ class SimplePid
   alias zap cleanup
 
   def write!
-    File.open(@path, 'w') { |f| f.puts Process.pid }
+    begin
+      File.open(@path, "w") { |f| f.puts Process.pid }
+    rescue Errno::ENOENT, Errno::EACCES
+      File.open("/tmp/#{Pathname.new(@path).basename}", "w") { |f| f.puts Process.pid }
+    end
   end
 end

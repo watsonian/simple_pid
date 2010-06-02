@@ -31,8 +31,11 @@ Most of the above is fairly self-explanatory. You can accomplish all of the
 above by calling:
 
  SimplePid.drop("/path/to/your.pid")
+ 
+If the path specified for the pid is unwritable for any reason, it falls back
+to using /tmp to store the
 
-And you can cleanup quickly with:
+You can cleanup quickly with:
 
  SimplePid.cleanup("/path/to/your.pid")
 
